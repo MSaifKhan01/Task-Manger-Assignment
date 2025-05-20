@@ -1,14 +1,27 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const connectDB = require("./config/db");
+
 
 dotenv.config();
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
-app.get("/",(req,res)=>{
-    res.status(200).send("Wellcome To The Mern Task Management")
-})
+
+app.get("/", (req, res) => {
+  res.status(200).send("Wellcome To The Mern Task Management");
+});
+
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, async () => {
+  try {
+    await connectDB;
+    console.log("DB Connected Succesfully");
+  } catch (error) {}
+  console.log(`Server running on port ${PORT}`);
+});
