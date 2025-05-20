@@ -3,7 +3,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
-
+const userRouter = require("./routes/userRoutes");
+const taskRouter = require("./routes/taskRoutes");
 dotenv.config();
 const app = express();
 
@@ -14,7 +15,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.status(200).send("Wellcome To The Mern Task Management");
 });
-
+app.use("/auth", userRouter);
+app.use("/tasks", taskRouter);
 
 const PORT = process.env.PORT || 5000;
 
