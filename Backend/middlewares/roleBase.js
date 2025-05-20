@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { userModel } = require('../models/User');
+const { userModel } = require("../models/user");
+
 require("dotenv").config();
 
 const RoleBase = (permittedRoles) =>async (req, res, next) => {
