@@ -4,8 +4,8 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const API_URL = "https://labrys-task-manger.onrender.com/auth";
+// const API_URL = "https://labrys-task-manger.onrender.com/auth";
+const API_URL = "http://localhost:5000/auth";
 
 const userFromStorage = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))
@@ -59,8 +59,8 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        // state.user = action.payload;
-        // localStorage.setItem("user", JSON.stringify(action.payload));
+        state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload));
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;

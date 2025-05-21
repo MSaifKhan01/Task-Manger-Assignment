@@ -1,166 +1,157 @@
-Here's a complete `README.md` for your **MERN Stack Task Manager** project, covering:
 
-* Overview
-* Tech Stack
-* Features
-* Setup Instructions
-* Usage Guide
-* Folder Structure
-* License (optional)
 
-You can copy-paste this into your project root:
 
----
+# 📋 MERN Stack Task Manager
 
-```md
-# MERN Stack Task Manager
 
-A full-stack **Task Manager App** built using the **MERN stack (MongoDB, Express.js, React, Node.js)** with **JWT Authentication**, **Role-Based Access (User/Admin)**, and **Redux Toolkit**. Users can create, update, and manage their tasks, while admins can view and control all tasks.
 
----
+A full-featured Task Management application built with the MERN stack (MongoDB, Express.js, React, Node.js) featuring JWT authentication, role-based access control, and Redux Toolkit for state management.
 
-## 🌐 Live Demo
+## ✨ Key Features
 
-> 🚀 _Deployed link coming soon..._
+### 🔐 Authentication
+- Secure user registration and login
+- JWT token-based authentication
+- Password hashing with bcrypt.js
+- Persistent login session
 
----
+### 📝 Task Management
+- Create, read, update, and delete tasks
+- Task attributes:
+  - Title & description
+  - Due date with reminders
+  - Priority levels
+  - Completion status
+- Personalized task dashboard
+
+### 👥 Role-Based Access
+- **User Role:**
+  - Manage own tasks
+  - View personal task statistics
+- **Admin Role:**
+  - View all users' tasks
+  - Filter and search across all tasks
+  - Manage task statuses
+
+### 🚀 Technical Highlights
+- Redux Toolkit for efficient state management
+- Responsive UI with Material-UI components
+- RESTful API design
+- MongoDB Atlas for cloud database
+- Secure API endpoints with middleware
 
 ## 🛠 Tech Stack
 
-### 🔹 Frontend
-- **React.js** (with Hooks)
-- **Redux Toolkit** (State Management)
-- **React Router DOM** (Routing)
-- **Axios** (API calls)
-- **Material UI** (UI components & theming)
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| React.js 18 | Frontend framework |
+| Redux Toolkit | State management |
+| React Router v6 | Navigation |
+| Axios | HTTP client |
+| Material-UI | UI components |
+| Date-fns | Date handling |
 
-### 🔹 Backend
-- **Node.js** + **Express.js**
-- **MongoDB** (NoSQL database)
-- **Mongoose** (ODM for MongoDB)
-- **JWT (JSON Web Tokens)** – Authentication
-- **bcrypt.js** – Password hashing
-- **CORS** – Cross-origin support
-- **dotenv** – Environment config
+### Backend
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime environment |
+| Express.js | Web framework |
+| MongoDB | Database |
+| Mongoose | ODM for MongoDB |
+| JWT | Authentication |
+| Bcrypt.js | Password hashing |
+| CORS | Cross-origin support |
+| Dotenv | Environment variables |
 
----
+## 🚀 Getting Started
 
-## ✨ Features
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB Atlas account or local MongoDB
+- Git
 
-### 👤 User Authentication
-- Signup & Login with JWT
-- Passwords are securely hashed
-- Persistent login via tokens
+### Installation
 
-### 📝 Task Management
-- Add, update, delete, and view tasks
-- Tasks include title, description, due date, category, and completion status
-- Users see only their tasks
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MSaifKhan01/Task-Manger-Assignment.git
+   cd Task-Manger-Assignment
+   ```
 
-### 🛡 Admin Features
-- View all users' tasks
-- Filter tasks by category or due date
-- Mark any task complete/incomplete
-- Delete any task
+2. **Set up backend**
+   ```bash
+   cd backend
+   npm install
+   cp .env.example .env
+   # Update .env with your credentials
+   npm run dev
+   ```
 
-### 🔒 Role-Based Access
-- Only users can create/edit their tasks
-- Admins can only view/manage, not create
+3. **Set up frontend**
+   ```bash
+   cd ../frontend
+   npm install
+   npm run dev
+   ```
 
----
+4. **Access the application**
+   - Frontend: `http://localhost:3000`
+   - Backend: `http://localhost:5000`
 
-## 📁 Folder Structure
+## 📂 Project Structure
 
 ```
-
-├── backend
-│   ├── controllers/
-│   ├── middlewares/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
+task-manager/
+├── backend/
+│   ├── config/         # Database and auth config
+│   ├── controllers/    # Route controllers
+│   ├── middleware/     # Authentication middleware
+│   ├── models/         # MongoDB models
+│   ├── routes/         # API routes
+│   ├── utils/          # Utility functions
+│   └── server.js       # Express server
 │
-├── frontend
-│   ├── components/
-│   ├── features/ (Redux slices)
-│   ├── pages/
-│   ├── App.jsx
-│   └── main.jsx
+├── frontend/
+│   ├── public/         # Static assets
+│   ├── src/
+│   │   ├── api/        # API service layer
+│   │   ├── app/        # Redux store setup
+│   │   ├── components/ # Reusable components
+│   │   ├── features/   # Redux slices
+│   │   ├── pages/      # Application pages
+│   │   ├── styles/     # Global styles
+│   │   ├── App.jsx     # Main component
+│   │   └── main.jsx    # Entry point
+│   └── package.json
 │
-├── .env
-├── README.md
-
-````
-
----
-
-## ⚙️ Local Setup
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/MSaifKhan01/Task-Manger-Assignment.git
-cd Task-Manger-Assignment
-````
-
-### 2. Setup Backend
-
-```bash
-cd backend
-npm install
+├── .gitignore
+└── README.md
 ```
 
-Create a `.env` file in `/backend`:
+## 🌟 Usage Guide
 
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
+1. **Registration**
+   - Navigate to `/register`
+   - Fill in user details
+   - Submit to create account
 
-Then run:
+2. **Login**
+   - Access `/login`
+   - Enter credentials
+   - You'll be redirected to dashboard
 
-```bash
-npm run dev
-```
+3. **Task Management**
+   - Click "Add Task" to create new
+   - Edit existing tasks with pencil icon
+   - Mark complete with checkbox
+   - Delete with trash icon
 
-> Server runs at `http://localhost:5000`
-
-### 3. Setup Frontend
-
-```bash
-cd ../frontend
-npm install
-```
-
-Then start:
-
-```bash
-npm run dev
-```
-
-> React app runs at `http://localhost:3000`
-
----
-
-## 🔐 Default Roles
-
-* **User** can create/manage their own tasks
-* **Admin** can view/manage all tasks, but cannot create tasks
-
----
-
-## 📌 Usage
-
-1. Register a user via Signup
-2. Login with credentials
-3. Create and manage tasks
-4. Admin can log in and view/manage all tasks
-
-
+4. **Admin Features**
+   - View all tasks in admin dashboard
+   - Filter by user or status
+   - Manage any task
 
 ## 📝 License
 
-This project is licensed under the MIT License.
-
----
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
