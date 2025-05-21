@@ -14,6 +14,7 @@ exports.createTask = async (req, res) => {
     if (duplicate) {
         return res.status(409).send({ message: "Duplicate task title not allowed" });
     }
+    
 
     const task = new taskModel({ title, category, dueDate, userID: req.userID });
     await task.save();
