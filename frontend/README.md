@@ -1,152 +1,176 @@
 
+# 🚀 MERN Stack Task Manager
 
----
 
-```md
-# MERN Stack Task Manager
 
-A full-stack **Task Manager Application** built using the **MERN stack (MongoDB, Express.js, React, Node.js)**. It features **JWT-based authentication**, **role-based access control (User/Admin)**, and centralized state management with **Redux Toolkit**. Users can create and manage their personal tasks, while admins have access to manage all users' tasks.
+A production-ready task management application built with the MERN stack featuring secure authentication, role-based access control, and efficient state management.
 
----
+## 🌟 Key Features
 
-## 🌐 Live Demo
+### 🔒 Authentication System
+- Secure JWT-based authentication
+- Password encryption with bcrypt.js
+- Persistent login sessions
+- Protected API routes
 
-> 🚀 **Deployed link coming soon...**
+### 📋 Task Management
+- Create, read, update, delete tasks
+- Task properties:
+  - Title 
+  - Due dates 
+  - Completion status
+- Personalized task dashboard
 
----
+### 👨‍💻 Admin Privileges
+- View all users' tasks
+- Advanced filtering (by category, daDue date)
+- Bulk operations
+- System analytics dashboard
 
-## 🛠 Tech Stack
+## 🛠 Technology Stack
 
-### 🔹 Frontend
-- **React.js** – UI development using functional components and hooks  
-- **Redux Toolkit** – State management  
-- **React Router DOM** – Client-side routing  
-- **Axios** – HTTP requests  
-- **Material UI** – UI components and design system  
+### Frontend
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| React | UI Framework | 18+ |
+| Redux Toolkit | State Management | 1.9+ |
+| React Router | Navigation | 6+ |
+| Axios | HTTP Client | 1.3+ |
+| Material UI | UI Components | 5+ |
+| Date-fns | Date Handling | 2+ |
 
-### 🔹 Backend
-- **Node.js** + **Express.js** – REST API and server  
-- **MongoDB** – NoSQL database  
-- **Mongoose** – Object Data Modeling (ODM)  
-- **JWT** – Secure token-based authentication  
-- **bcrypt.js** – Password encryption  
-- **CORS** – Cross-origin request handling  
-- **dotenv** – Environment variable management  
+### Backend
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| Node.js | Runtime | 16+ |
+| Express | Web Framework | 4+ |
+| MongoDB | Database | 6+ |
+| Mongoose | ODM | 7+ |
+| JWT | Authentication | 8+ |
+| Bcrypt | Password Hashing | 5+ |
 
----
+## 🚀 Installation Guide
 
-## ✨ Features
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (Atlas or local)
+- Git
 
-### 👤 User Authentication
-- Register and login with secure credentials  
-- JWT-based authentication with persistent login  
-- Passwords hashed using bcrypt
+### Setup Instructions
 
-### 📝 Task Management
-- Create, edit, and delete tasks  
-- Tasks include title, description, due date, category, and completion status  
-- Regular users see only their own tasks
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MSaifKhan01/Task-Manger-Assignment.git
+   cd Task-Manger-Assignment
+   ```
 
-### 🛡 Admin Features
-- View all users' tasks  
-- Filter tasks by category or due date  
-- Mark any task as complete/incomplete  
-- Delete any user's task
+2. **Configure Backend**
+   ```bash
+   cd backend
+   npm install
+   cp .env.example .env
+   # Edit .env with your credentials
+   npm run dev
+   ```
 
-### 🔒 Role-Based Access Control
-- **Users** can manage only their own tasks  
-- **Admins** can view and control all tasks but **cannot** create new ones
+3. **Configure Frontend**
+   ```bash
+   cd ../frontend
+   npm install
+   npm run dev
+   ```
 
----
+4. **Access the Application**
+   - Frontend: `http://localhost:3000`
+   - Backend API: `http://localhost:5000`
 
-## 📁 Folder Structure
+## 📂 Project Structure
 
 ```
-
-├── backend
-│   ├── controllers/
-│   ├── middlewares/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
+MERN-Task-Manager/
+├── backend/
+│   ├── config/         # Configuration Db
+│   ├── controllers/    # Business logic
+│   ├── middleware/     # middleware
+│   ├── models/         # MongoDB schemas
+│   ├── routes/         # API endpoints
+│   └── index.js       # Express server
 │
-├── frontend
-│   ├── components/
-│   ├── features/         # Redux slices
-│   ├── pages/
-│   ├── App.jsx
-│   └── main.jsx
+├── frontend/
+│   ├── public/         # Static assets
+│   └── src/
+│       ├── app/        # Redux store
+│       ├── components/ # Reusable UI
+│       ├── features/   # Redux slices
+│       ├── pages/      # Application views
+│       ├── utils/ 
+│       ├── App.js     # Root component
+│       └── index.js   # Entry point
 │
-├── .env
-├── README.md
-
-````
-
----
-
-## ⚙️ Local Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/MSaifKhan01/Task-Manger-Assignment.git
-cd Task-Manger-Assignment
-````
-
-### 2. Backend Setup
-
-```bash
-cd backend
-npm install
+├── .env.example        # Environment template
+└── README.md           # Project documentation
 ```
 
-Create a `.env` file in the `backend` directory with the following:
+## 📝 Usage Instructions
 
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
+## 👨‍💻 User Journey
 
-Start the backend server:
+### 🏠 Home Page
+- Landing page with two options:
+  - **Login** (for existing users)
+  - **Sign Up** (for new users)
 
-```bash
-npm run dev
-```
+### 🔐 Authentication Flow
+1. **New Users**:
+   - Click "Sign Up" on home page
+   - Fill registration form (name, email, password)
+   - Redirected to Login
 
-> Backend runs at `http://localhost:5000`
+2. **Existing Users**:
+   - Click "Login" on home page
+   - Enter credentials (email & password)
+   - Redirected to appropriate dashboard based on role:
+     - User Dashboard (for regular users)
+     - Admin Dashboard (for admin users)
 
-### 3. Frontend Setup
+### 📋 User Dashboard (Regular Users)
+- View all personal tasks
+- **Task Actions**:
+  - ➕ Add new tasks
+  - ✅ Mark tasks complete (checkbox)
+  - 🗑️ Delete tasks (trash icon)
+  -    Logout option
+- Filter tasks by:
+  - category 
+  - Due date
+ 
 
-```bash
-cd ../frontend
-npm install
-npm run dev
-```
 
-> Frontend runs at `http://localhost:3000`
+### 👔 Admin Dashboard
+- View all tasks from all users
+- **Administrative Actions**:
+  - 🔍 Filter tasks by:
+  
+    - Category
+    -  Due date
+  - ⚙️ Manage any task:
+    - Mark complete/incomplete
+    - Delete tasks
+- **System Tools**:
+  - Logout option
 
----
+### 🔄 Common Features
+- Both roles can:
+  - filter tasks by different criteria
+  - Securely logout from system
 
-## 🔐 Default Roles
+## 🔒 Security Features
+- Role-based access control
+- Password hashing with salt
+- JWT token expiration
+- Protected API endpoints
+- Secure HTTP headers
 
-* **User** – Can register, login, and manage their own tasks
-* **Admin** – Can view and manage all tasks, but cannot create tasks
-
----
-
-## 📌 Usage Guide
-
-1. Register a user or login with valid credentials
-2. Regular users can create, update, and delete their tasks
-3. Admin users can view and manage all users’ tasks
-
----
-
-## 📝 License
-
-This project is licensed under the **MIT License**.
-
-```
-
+## 📜 License
+MIT License - See [LICENSE](LICENSE) for details.
 

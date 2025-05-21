@@ -157,3 +157,26 @@ exports.deleteTaskAdmin = async (req, res) => {
     res.status(500).send({ message: "Admin: Failed to delete task" });
   }
 };
+
+
+
+
+// Filter All Tasks (Admin) by category and dueDate
+exports.filterAllTasksAdmin = async (req, res) => {
+  const { category, dueDate } = req.query;
+
+  let filter = {};
+  if (category) {
+    filter.category = category;
+  }
+  if (dueDate) {
+    filter.dueDate = { $lte: new Date(dueDate) };
+  }
+
+  try {
+    const tasks = await taskModel.find(filter);
+    res.status(200).send(tasks);
+  } catch {
+    res.status(500).send({ message: "Error filtering admin tasks" });
+  }
+};

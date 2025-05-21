@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, error, loading } = useSelector((state) => state.auth);
+  const { error, loading } = useSelector((state) => state.auth);
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -26,16 +26,30 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("none");
   const [validationError, setValidationError] = useState("");
-
-  useEffect(() => {
-    if (user.message==="User registered successfully") {
+let message= localStorage.getItem("msg")
+    if (message&&message.message==="User registered successfully") {
       navigate("/login");
     }
+
+  useEffect(() => {
+  const message = localStorage.getItem("msg");
+    if (message) {
+      try {
+        const parsedMsg = JSON.parse(message);
+        if (parsedMsg.message === "User registered successfully") {
+          localStorage.removeItem("msg"); // cleanup
+          navigate("/login");
+        }
+      } catch (err) {
+        console.error("Invalid JSON in localStorage:msg");
+      }
+    }
+
     return () => {
       dispatch(clearError());
       setValidationError("");
     };
-  }, [user, navigate, dispatch]);
+  }, [message, navigate, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

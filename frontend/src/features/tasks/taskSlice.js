@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const API_URL = "https://labrys-task-manger.onrender.com/tasks"; 
-// const API_URL = "http://localhost:5000/tasks"; 
+
+// const API_URL = "https://labrys-task-manger.onrender.com/tasks";
+const API_URL = "http://localhost:5000/tasks";
 
 // Setup token header helper
 const config = (token) => ({
@@ -44,7 +45,6 @@ export const addTask = createAsyncThunk(
     try {
       const token = getState().auth.user.token;
       const res = await axios.post(API_URL, taskData, config(token));
-      console.log(res)
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
@@ -120,9 +120,21 @@ export const filterTasks = createAsyncThunk(
   }
 );
 
+export const adminFilterTasks = createAsyncThunk(
+  "tasks/adminFilterTasks",
+  async (filters, { getState, rejectWithValue }) => {
+    try {
+      const token = getState().auth.user.token;
+      const query = new URLSearchParams(filters).toString();
+      const res = await axios.get(`${API_URL}/admin/filter?${query}`, config(token));
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
 
-
-
+// Slice
 const taskSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -188,7 +200,7 @@ const taskSlice = createSlice({
       })
       .addCase(updateTask.fulfilled, (state, action) => {
         state.loading = false;
-        const index = state.tasks.findIndex(t => t._id === action.payload._id);
+        const index = state.tasks.findIndex((t) => t._id === action.payload._id);
         if (index !== -1) {
           state.tasks[index] = action.payload;
         }
@@ -201,10 +213,9 @@ const taskSlice = createSlice({
         state.error = action.payload;
       })
 
-      
       // deleteTask
       .addCase(deleteTask.fulfilled, (state, action) => {
-        state.tasks = state.tasks.filter(t => t._id !== action.payload);
+        state.tasks = state.tasks.filter((t) => t._id !== action.payload);
       })
       .addCase(deleteTask.rejected, (state, action) => {
         state.error = action.payload;
@@ -226,7 +237,7 @@ const taskSlice = createSlice({
 
       // Admin deleteTaskAdmin
       .addCase(deleteTaskAdmin.fulfilled, (state, action) => {
-        state.tasks = state.tasks.filter(t => t._id !== action.payload);
+        state.tasks = state.tasks.filter((t) => t._id !== action.payload);
       })
       .addCase(deleteTaskAdmin.rejected, (state, action) => {
         state.error = action.payload;
@@ -242,6 +253,20 @@ const taskSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(filterTasks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // adminFilterTasks
+      .addCase(adminFilterTasks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(adminFilterTasks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tasks = action.payload;
+      })
+      .addCase(adminFilterTasks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

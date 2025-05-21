@@ -7,7 +7,8 @@ const {
   deleteTask,
   filterTasks,
   getAllTasksAdmin,
-  deleteTaskAdmin
+  deleteTaskAdmin,
+  filterAllTasksAdmin
 } = require("../controllers/taskController");
 
 const { Auth } = require("../middlewares/auth");
@@ -27,5 +28,7 @@ taskRouter.delete("/:id", Auth, deleteTask);
 // Admins Task Routes
 taskRouter.get("/admin/all", Auth, RoleBase(["admin"]), getAllTasksAdmin);
 taskRouter.delete("/admin/:id", Auth, RoleBase(["admin"]), deleteTaskAdmin);
+taskRouter.get('/admin/filter', Auth, RoleBase(["admin"]), filterAllTasksAdmin);
+
 
 module.exports = taskRouter;

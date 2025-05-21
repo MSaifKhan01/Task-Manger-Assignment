@@ -12,11 +12,10 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
-
-  deleteTask,
-  filterTasks,
-  updateTask,
   fetchAllTasksAdmin,
+  deleteTask,
+  updateTask,
+  adminFilterTasks,
 } from "../../features/tasks/taskSlice";
 
 
@@ -45,17 +44,19 @@ const AdminTaskList = () => {
     
   }, [dispatch]);
 
-  useEffect(() => {
-    const filters = {};
-    if (filterCategory !== "All") filters.category = filterCategory;
-    if (filterDate) filters.dueDate = filterDate;
+ 
+useEffect(() => {
+  const filters = {};
+  if (filterCategory !== "All") filters.category = filterCategory;
+  if (filterDate) filters.dueDate = filterDate;
 
-    if (filterCategory === "All" && filterDate === "") {
-      dispatch(fetchAllTasksAdmin());
-    } else {
-      dispatch(filterTasks(filters));
-    }
-  }, [filterCategory, filterDate, dispatch]);
+  if (filterCategory === "All" && filterDate === "") {
+    dispatch(fetchAllTasksAdmin());
+  } else {
+    dispatch(adminFilterTasks(filters));
+  }
+}, [filterCategory, filterDate, dispatch]);
+
 
  
  
