@@ -4,8 +4,8 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// const API_URL = "https://labrys-task-manger.onrender.com/auth";
-const API_URL = "http://localhost:5000/auth";
+const API_URL = "https://labrys-task-manger.onrender.com/auth";
+// const API_URL = "http://localhost:5000/auth";
 
 const userFromStorage = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))
