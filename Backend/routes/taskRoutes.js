@@ -11,7 +11,8 @@ const {
 } = require("../controllers/taskController");
 
 const { Auth } = require("../middlewares/auth");
-const { RoleBase } = require("../middlewares/RoleBase");
+const RoleBase = require("../middlewares/roleBase");
+
 
 const taskRouter = express.Router();
 
