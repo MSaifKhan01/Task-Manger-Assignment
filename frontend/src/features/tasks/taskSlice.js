@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/tasks"; // Your backend task routes
+const API_URL = "https://labrys-task-manger.onrender.com/tasks"; // Your backend task routes
 
 // Setup token header helper
 const config = (token) => ({

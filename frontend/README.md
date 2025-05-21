@@ -1,70 +1,152 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+```md
+# MERN Stack Task Manager
 
-### `npm start`
+A full-stack **Task Manager Application** built using the **MERN stack (MongoDB, Express.js, React, Node.js)**. It features **JWT-based authentication**, **role-based access control (User/Admin)**, and centralized state management with **Redux Toolkit**. Users can create and manage their personal tasks, while admins have access to manage all users' tasks.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🌐 Live Demo
 
-### `npm test`
+> 🚀 **Deployed link coming soon...**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠 Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🔹 Frontend
+- **React.js** – UI development using functional components and hooks  
+- **Redux Toolkit** – State management  
+- **React Router DOM** – Client-side routing  
+- **Axios** – HTTP requests  
+- **Material UI** – UI components and design system  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🔹 Backend
+- **Node.js** + **Express.js** – REST API and server  
+- **MongoDB** – NoSQL database  
+- **Mongoose** – Object Data Modeling (ODM)  
+- **JWT** – Secure token-based authentication  
+- **bcrypt.js** – Password encryption  
+- **CORS** – Cross-origin request handling  
+- **dotenv** – Environment variable management  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## ✨ Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 👤 User Authentication
+- Register and login with secure credentials  
+- JWT-based authentication with persistent login  
+- Passwords hashed using bcrypt
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📝 Task Management
+- Create, edit, and delete tasks  
+- Tasks include title, description, due date, category, and completion status  
+- Regular users see only their own tasks
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🛡 Admin Features
+- View all users' tasks  
+- Filter tasks by category or due date  
+- Mark any task as complete/incomplete  
+- Delete any user's task
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 🔒 Role-Based Access Control
+- **Users** can manage only their own tasks  
+- **Admins** can view and control all tasks but **cannot** create new ones
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Folder Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
+├── backend
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+│
+├── frontend
+│   ├── components/
+│   ├── features/         # Redux slices
+│   ├── pages/
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── .env
+├── README.md
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+````
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## ⚙️ Local Setup
 
-### Making a Progressive Web App
+### 1. Clone the Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+git clone https://github.com/MSaifKhan01/Task-Manger-Assignment.git
+cd Task-Manger-Assignment
+````
 
-### Advanced Configuration
+### 2. Backend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+cd backend
+npm install
+```
 
-### Deployment
+Create a `.env` file in the `backend` directory with the following:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
 
-### `npm run build` fails to minify
+Start the backend server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm run dev
+```
+
+> Backend runs at `http://localhost:5000`
+
+### 3. Frontend Setup
+
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+> Frontend runs at `http://localhost:3000`
+
+---
+
+## 🔐 Default Roles
+
+* **User** – Can register, login, and manage their own tasks
+* **Admin** – Can view and manage all tasks, but cannot create tasks
+
+---
+
+## 📌 Usage Guide
+
+1. Register a user or login with valid credentials
+2. Regular users can create, update, and delete their tasks
+3. Admin users can view and manage all users’ tasks
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License**.
+
+```
+
+
