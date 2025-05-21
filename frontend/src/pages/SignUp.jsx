@@ -28,7 +28,7 @@ const SignUp = () => {
   const [validationError, setValidationError] = useState("");
 
   useEffect(() => {
-    if (user) {
+    if (user.role) {
       navigate("/tasks");
     }
     return () => {
